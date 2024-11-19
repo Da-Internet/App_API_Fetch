@@ -1,5 +1,6 @@
 
 // 
+console.log("Header Cargado");
 const headerElement = document.getElementById('header');
 
 // Para el header

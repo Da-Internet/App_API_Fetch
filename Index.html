@@ -5,17 +5,17 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Hecha por: Diego Alberto Canto Ricardez -->
   <title>VirtualNews</title>
 
   <!-- Enlace al icono para la pagina -->
-  <link rel="icon" href="img/Logo.svg" type="image/svg+xml">
+  <link rel="icon" href="img/Logo.svg" type="img/svg+xml">
 
   <link rel="stylesheet" href="./CSS/bootstrap.min.css">
 
+  <!-- Hecha por: Diego Alberto Canto Ricardez -->
+
   <!-- Enlace del Manifiesto -->
-  <link rel="manifest" href="Manifiesto.json">
+  <link rel="manifest" href="Manifest.json">
 
 </head>
 
@@ -29,12 +29,7 @@
   <!-- Titulo -->
   <h3 class="text-white">Noticias de Hoy</h3>
 
-  <!-- 
-  <div>
-    <button id="BtnEnviar" class="btn btn-outline-primary" type="download">Descargar</button>
-  </div>
   <br>
-   -->
 
   <!-- Carrusel -->
   <div id="carouselExampleCaptions" class="carousel slide carousel-fade">
@@ -59,7 +54,7 @@
       <div class="carousel-item active">
         <a href="./GameNews/Noticia_Carrusel.html">
 
-          <img src="Img/Among Us.png" class="d-block w-100" style="width: 300px; height: 600px;" alt="...">
+          <img src="Img/Among_Us.png" class="d-block w-100" style="width: 300px; height: 600px;" alt="...">
 
           <div class="carousel-caption d-none d-md-block">
 
@@ -74,7 +69,7 @@
       <div class="carousel-item">
         <a href="./GameNews/Noticia_Carrusel.html">
 
-          <img src="Img/Elden Ring.png" class="d-block w-100" style="width: 300px; height: 600px;" alt="...">
+          <img src="Img/Elden_Ring.png" class="d-block w-100" style="width: 300px; height: 600px;" alt="...">
 
           <div class="carousel-caption d-none d-md-block">
 
@@ -88,7 +83,7 @@
       <div class="carousel-item">
         <a href="./GameNews/Noticia_Carrusel.html">
 
-          <img src="Img/Unicorn Overlord.png" class="d-block w-100" style="width: 300px; height: 600px;" alt="...">
+          <img src="Img/Unicorn_Overlord.png" class="d-block w-100" style="width: 300px; height: 600px;" alt="...">
 
           <div class="carousel-caption d-none d-md-block">
 
@@ -103,7 +98,7 @@
       <div class="carousel-item">
         <a href="./GameNews/Noticia_Carrusel.html">
 
-          <img src="Img/EA FC.png" class="d-block w-100" style="width: 300px; height: 600px;" alt="...">
+          <img src="Img/EA_FC.png" class="d-block w-100" style="width: 300px; height: 600px;" alt="...">
 
           <div class="carousel-caption d-none d-md-block">
 
@@ -154,7 +149,7 @@
 
           <a href="GameNews/Noticia_Columna.html">
 
-            <img src="./Img/Ace Attorney.png" class="card-img-top" alt="...">
+            <img src="./Img/Ace_Attorney.png" class="card-img-top" alt="...">
 
             <div class="card-body">
               <p class="card-title text-white bg-dark bg-opacity-75">Ace Attorney</p>
@@ -173,7 +168,7 @@
 
           <a href="GameNews/Noticia_Columna.html">
 
-            <img src="./Img/Baldur's Gate 3.png" class="card-img-top" alt="...">
+            <img src="./Img/Baldurs_Gate_3.png" class="card-img-top" alt="...">
 
             <div class="card-body">
               <p class="card-title text-white bg-dark bg-opacity-75">Larian Studios</p>
@@ -229,31 +224,30 @@
 <!-- Service Worker -->
 <script>
 
-  // Registrar el Service Worker
   window.addEventListener('load', () => {
     registerSW();
   });
 
+  // Registrar el Service Worker
   async function registerSW() {
     if ('serviceWorker' in navigator) {
       try {
-
-        console.log('Intentando registrar el Service Worker...');
-        await navigator.serviceWorker.register('./JS/ServiceWorkers.js');
-        
-        console.log('Service Worker registrado con éxito');
-
-      } catch (e) {
-
-        console.log('Error en el registro del Service Worker:', e);
-
+        await navigator
+          .serviceWorker
+          .register('./ServiceWorkers.js');
       }
-    } else {
-
-      console.log('El navegador no soporta Service Worker');
-
+      catch (e) {
+        console.log('Error en el registro del SW');
+      }
     }
   }
+
+  window.addEventListener('online', () => {
+    if (navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage('checkConnection');
+    }
+  });
+
 </script>
 
 </html>
